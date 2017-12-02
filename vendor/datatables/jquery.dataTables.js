@@ -11383,7 +11383,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sEmptyTable": "No data available in table",
+			"sEmptyTable": "No hay registros para mostrar",
 	
 	
 			/**
@@ -11436,7 +11436,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sInfoEmpty": "Showing 0 to 0 of 0 entries",
+			"sInfoEmpty": "Mostrando 0 a 0 de 0 registros",
 	
 	
 			/**
@@ -11714,7 +11714,7 @@
 			 *      } );
 			 *    } );
 			 */
-			"sZeroRecords": "No matching records found"
+			"sZeroRecords": "No se encontraron coincidencias"
 		},
 	
 	
