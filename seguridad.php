@@ -1,6 +1,7 @@
 <?php
 error_reporting(0);
 session_start();
+include("conexion.php");
 $idu=$_SESSION['idu'];
 $acceso=$_SESSION['acceso'];
 $tipo=$_SESSION['tipo'];
