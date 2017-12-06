@@ -15,6 +15,7 @@
   <link href="vendor/datatables/dataTables.bootstrap4.css" rel="stylesheet">
   <!-- Custom styles for this template-->
 	<link href="css/sb-admin.css" rel="stylesheet">
+	<script src="js/jquery-1.11.2.min.js"></script>
 </head>
 
 <body class="fixed-nav sticky-footer bg-dark" id="page-top" oncontextmenu="return true" onselectstart="return false" ondragstart="return false">
