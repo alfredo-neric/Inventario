@@ -2,7 +2,7 @@
 function encode_this($string)
 {
 $string=utf8_encode($string);
-$control="sct";
+$control="ANC";
 $string=$control.$string.$control;
 $string=base64_encode($string);
 return $string;
@@ -10,8 +10,7 @@ return $string;
 $usuario=$_REQUEST['username'];
 $psw=$_REQUEST['pswd'];
 include('conexion.php');
-$psw2=$psw;
-//$psw2=md5($psw);
+$psw2=base64_encode(md5($psw));
 $sql="SELECT * FROM TC_USUARIOS WHERE usuario = '$usuario'";
 $consulta=mysql_query($sql)or die("Error de Consulta.");
 $cuantos=mysql_num_rows($consulta);
