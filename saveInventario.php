@@ -19,16 +19,23 @@ $observaciones=$_REQUEST['observaciones'];
 
 if($departamento>0 && $categoria>0 && $marca>0 && $proveedor>0 && $estado>0 && $garantia>0 && $tipo > 0){
 	if($clave != "" && $modelo!= "" && $numero != "" && $folio != "" && $fecalta != ""){
-		if($costo>0 && $descripcion != ""){
-			$sql="INSERT INTO tw_inventario (clave, idcategoria, iddepartamento, idmarca, idproveedor, modelo, idestado, numserie, descripcion, idgarantia, costoiva, foliofactura, idtipoadquisicion, fechaalta, fechabaja, observaciones) VALUES ('".$clave."',".$categoria.",".$departamento.",".$marca.",".$proveedor.",'".$modelo."',".$estado.",'".$numero."','".$descripcion."',".$garantia.",'".$costo."','".$folio."',".$tipo.",'".$fecalta."','".$fecbaja."','".$observaciones."')";
-			$data=mysql_query($sql);
-			if($data){
-				echo"<div class='alert alert-success' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Exito!</strong> Se ha registrado correctamente.</div>";
-				echo "<script>";
-				echo "$('#frmdo')[0].reset();";
-				echo "</script>";
+		if($costo>=0 && $descripcion != ""){
+			$sql="SELECT * FROM tw_inventario WHERE clave='".$clave."'";
+			$data=mysql_query($sql)or die("Error ln.24");
+			$cuantos=mysql_num_rows($data);
+			if($cuantos>0){
+				echo"<div class='alert alert-danger' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Error! </strong>La Clave campurada ya existe, favor de capturar una diferente</div>";
 			}else{
-				echo"<div class='alert alert-danger' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Error!</strong> Se ha presentado un error salvando los datos. Contacta al administrador.</div>";
+				$sql="INSERT INTO tw_inventario (clave, idcategoria, iddepartamento, idmarca, idproveedor, modelo, idestado, numserie, descripcion, idgarantia, costoiva, foliofactura, idtipoadquisicion, fechaalta, fechabaja, observaciones) VALUES ('".$clave."',".$categoria.",".$departamento.",".$marca.",".$proveedor.",'".$modelo."',".$estado.",'".$numero."','".$descripcion."',".$garantia.",'".$costo."','".$folio."',".$tipo.",'".$fecalta."','".$fecbaja."','".$observaciones."')";
+				$data=mysql_query($sql);
+				if($data){
+					echo"<div class='alert alert-success' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Exito!</strong> Se ha registrado correctamente.</div>";
+					echo "<script>";
+					echo "$('#frmdo')[0].reset();";
+					echo "</script>";
+				}else{
+					echo"<div class='alert alert-danger' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Error!</strong> Se ha presentado un error salvando los datos. Contacta al administrador.</div>";
+				}
 			}
 		}else{
 			echo"<div class='alert alert-danger' role='alert'><button type='button' class='close' data-dismiss='alert' aria-label='Close'><span aria-hidden='true'>&times;</span></button><strong>Favor de validar los siguientes campos:</strong><div class='row'><div class='col-md-4'>Costo con IVA</div><div class='col-md-4'>Descripción</div></div></div>";

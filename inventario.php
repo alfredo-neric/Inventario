@@ -68,20 +68,6 @@
 								<input class="form-control" id="clave" name="clave" type="text">
 							</div>
 							<div class="col-md-4">
-								<label>Categoría:</label>
-								<select id="categoria" name="categoria" class="form-control">
-									<option value='0'>Seleccionar</option>
-									<?php
-									$sql="SELECT idcategoria, categoria FROM tc_categorias WHERE estatus = 1";
-									$data=mysql_query($sql)or die("Error de consulta ln.75");
-									$cuantos=mysql_num_rows($data);
-									for($y=0; $y<$cuantos; $y++){
-										echo"<option value='".mysql_result($data,$y,'idcategoria')."'>".mysql_result($data,$y,'categoria')."</option>";
-									}
-									?>
-								</select>
-							</div>
-							<div class="col-md-4">
 								<label>Departamento:</label>
 								<select id="departamento" name="departamento" class="form-control">
 									<option value='0'>Seleccionar</option>
@@ -95,13 +81,30 @@
 									?>
 								</select>
 							</div>
+							<div class="col-md-4">
+								<label>División:</label>
+								<select id="division" name="division" class="form-control">
+									<option value='0'>Seleccionar</option>
+									<?php
+									$sql="SELECT iddivision, division FROM tc_divisiones WHERE status = 1";
+									$data=mysql_query($sql)or die("Error de consulta ln.113");
+									$cuantos=mysql_num_rows($data);
+									for($y=0; $y<$cuantos; $y++){
+										echo"<option value='".mysql_result($data,$y,'iddivision')."'>".mysql_result($data,$y,'division')."</option>";
+									}
+									?>
+								</select>
+								<!--<input class="form-control" id="responsable" name="responsable" type="text">-->
+							</div>
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="form-row">
 							<div class="col-md-4">
-								<label>Responsable:</label>
-								<input class="form-control" id="responsable" name="responsable" type="text">
+								<label>Categoría:</label>
+								<select id="categoria" name="categoria" class="form-control">
+									<option value='0'>Seleccionar</option>
+								</select>
 							</div>
 							<div class="col-md-4">
 								<label>Marca:</label>
@@ -234,6 +237,17 @@
         </div>
     </div>
 </div>
+<script type="text/javascript">
+$(function () {
+	
+	$('#division').click(function()
+	{
+		$('#categoria').load('comboCategoria.php?idd=' + this.options[this.selectedIndex].value )
+ 
+	})
+	
+})
+</script>
 <script>
     $(document).on('ready',function(){
 		$('#btn-guardar').click(function(){
